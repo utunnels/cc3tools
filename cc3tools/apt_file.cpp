@@ -474,7 +474,20 @@ void CC3TOOLS_DLL_EXPORT GenerateAptAptFile(Movie *m,const char *filename)
 	}
 	unsigned char **ch = (unsigned char **)aptpos;
 	aptpos += m->charactercount * 4;
+	//save const file, for aptxmleditor
 	unsigned char *chd = aptpos;
+	char aptconst[MAX_PATH];
+	strcpy(aptconst, filename);
+	aptconst[strlen(filename)-4]='\0';
+	strcat(aptconst, ".const");
+	FILE *cf = fopen(aptconst,"rb+");
+	if (cf)
+	{
+		unsigned aptdataoffset = aptpos - aptdata;
+		fseek(cf, 0x14, SEEK_SET);
+		fwrite(&aptdataoffset,4,1,cf);
+		fclose(cf);
+	}
 	aptpos += characterdatasize;
 	OutputFrame *fr = (OutputFrame *)aptpos;
 	aptpos += framesize;
