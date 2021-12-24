@@ -63,6 +63,197 @@ std::string encodeForXml(const std::string& sSrc)
 
 #define add(x) *((unsigned char **)&x) += (unsigned int)aptaptdata;
 AptConstData* c;
+char *ActionNames[0xC0] = {
+	"ActionEnd", //0x00
+	"", //0x01
+	"", //0x02
+	"", //0x03
+	"ActionNextFrame", //0x04
+	"ActionPrevFrame", //0x05
+	"ActionPlay", //0x06
+	"ActionStop", //0x07
+	"ActionToggleQuality", //0x08
+	"ActionStopSounds", //0x09
+	"ActionAdd", //0x0a
+	"ActionSubtract", //0x0b
+	"ActionMultiply", //0x0c
+	"ActionDivide", //0x0d
+	"ActionEqual", //0x0e
+	"ActionLessThan", //0x0f
+	"ActionLogicalAnd", //0x10
+	"ActionLogicalOr", //0x11
+	"ActionLogicalNot", //0x12
+	"ActionStringEq", //0x13
+	"ActionStringLength", //0x14
+	"ActionSubString", //0x15
+	"", //0x16
+	"ActionPop", //0x17
+	"ActionInt", //0x18
+	"", //0x19
+	"", //0x1a
+	"", //0x1b
+	"ActionGetVariable", //0x1c
+	"ActionSetVariable", //0x1d
+	"", //0x1e
+	"", //0x1f
+	"ActionSetTargetExpression", //0x20
+	"ActionStringConcat", //0x21
+	"ActionGetProperty", //0x22
+	"ActionSetProperty", //0x23
+	"ActionDuplicateClip", //0x24
+	"ActionRemoveClip", //0x25
+	"ActionTrace", //0x26
+	"ActionStartDrag", //0x27
+	"ActionStopDrag", //0x28
+	"ActionStringCompare", //0x29
+	"ActionThrow", //0x2a
+	"ActionCastOp", //0x2b
+	"ActionImplementsOp", //0x2c
+	"", //0x2d
+	"", //0x2e
+	"", //0x2f
+	"ActionRandom", //0x30
+	"ActionMBLength", //0x31
+	"ActionOrd", //0x32
+	"AcrionChr", //0x33
+	"ActionGetTimer", //0x34
+	"ActionMBSubString", //0x35
+	"ActionMBOrd", //0x36
+	"ActionMBChr", //0x37
+	"", //0x38
+	"", //0x39
+	"ActionDelete", //0x3a
+	"ActionDelete2", //0x3b
+	"ActionDefineLocal", //0x3c
+	"ActionCallFunction", //0x3d
+	"ActionReturn", //0x3e
+	"ActionModulo", //0x3f
+	"ActionNew", //0x40
+	"ActionVar", //0x41
+	"ActionInitArray", //0x42
+	"ActionInitObject", //0x43
+	"ActionTypeOf", //0x44
+	"ActionTargetPath", //0x45
+	"ActionEnumerate", //0x46
+	"ActionNewAdd", //0x47
+	"ActionNewLessThan", //0x48
+	"ActionNewEquals", //0x49
+	"ActionToNumber", //0x4a
+	"ActionToString", //0x4b
+	"ActionDup", //0x4c
+	"ActionSwap", //0x4d
+	"ActionGetMember", //0x4e
+	"ActionSetMember", //0x4f
+	"ActionIncrement", //0x50
+	"ActionDecrement", //0x51
+	"ActionCallMethod", //0x52
+	"ActionNewMethod", //0x53
+	"ActionInstanceOf", //0x54
+	"ActionEnum2", //0x55
+	"EAUnknownAction56", //0x56
+	"", //0x57
+	"EAUnknownAction58", //0x58
+	"EAPushZero", //0x59
+	"EAPushOne", //0x5a
+	"EACallFunctionPop", //0x5b
+	"EACallFunction", //0x5c
+	"EACAllMethodPop", //0x5d
+	"EACallMethod", //0x5e
+	"", //0x5f
+	"ActionBitwiseAnd", //0x60
+	"ActionBitwiseOr", //0x61
+	"ActionBitwiseXor", //0x62
+	"ActionShiftLeft", //0x63
+	"ActionShiftRight", //0x64
+	"ActionShiftRight2", //0x65
+	"ActionStrictEq", //0x66
+	"ActionGreater", //0x67
+	"ActionStringGreater", //0x68
+	"ActionExtends", //0x69
+	"", //0x6a
+	"", //0x6b
+	"", //0x6c
+	"", //0x6d
+	"", //0x6e
+	"", //0x6f
+	"EAPushThis", //0x70
+	"EAPushGlobal", //0x71
+	"EAZeroVariable", //0x72
+	"EAPushTrue", //0x73
+	"EAPushFalse", //0x74
+	"EAPushNull", //0x75
+	"EAPushUndefined", //0x76
+	"", //0x77
+	"", //0x78
+	"", //0x79
+	"", //0x7a
+	"", //0x7b
+	"", //0x7c
+	"", //0x7d
+	"", //0x7e
+	"", //0x7f
+	"", //0x80
+	"ActionGotoFrame", //0x81
+	"", //0x82
+	"ActionGetURL", //0x83
+	"", //0x84
+	"", //0x85
+	"", //0x86
+	"ActionSetRegister", //0x87
+	"ActionConstantPool", //0x88
+	"", //0x89
+	"ActionWaitForFrame", //0x8a
+	"ActionSetTarget", //0x8b
+	"ActionGotoLabel", //0x8c
+	"ActionWaitForFrameExpression", //0x8d
+	"ActionDefineFunction2", //0x8e
+	"ActionTry", //0x8f
+	"", //0x90
+	"", //0x91
+	"", //0x92
+	"", //0x93
+	"ActionWith", //0x94
+	"", //0x95
+	"ActionPushData", //0x96
+	"", //0x97
+	"", //0x98
+	"ActionBranchAlways", //0x99
+	"ActionGetURL2", //0x9a
+	"ActionDefineFunction", //0x9b
+	"", //0x9c
+	"ActionBranchIfTrue", //0x9d
+	"ActionCallFrame", //0x9e
+	"ActionGotoExpression", //0x9f
+	"", //0xa0
+	"EAPushString", //0xa1
+	"EAPushConstant", //0xa2
+	"EAPushWordConstant", //0xa3
+	"EAGetStringVar", //0xa4
+	"EAGetStringMember", //0xa5
+	"EASetStringVar", //0xa6
+	"EASetStringMember", //0xa7
+	"", //0xa8
+	"", //0xa9
+	"", //0xaa
+	"", //0xab
+	"", //0xac
+	"", //0xad
+	"EAPushValueOfVar", //0xae
+	"EAGetNamedMember", //0xaf
+	"EACallNamedFunctionPop", //0xb0
+	"EACallNamedFunction", //0xb1
+	"EACallNamedMethodPop", //0xb2
+	"EACallNamedMethod", //0xb3
+	"EAPushFloat", //0xb4
+	"EAPushByte", //0xb5
+	"EAPushShort", //0xb6
+	"EAPushLong", //0xb7
+	"EABranchIfFalse", //0xb8
+	"EAPushRegister" //0xb9
+};
+char name_comment_buf[65535];//lazy fix, but should be enough
+#define ACT (sprintf(name_comment_buf,"<!--%s-->",ActionNames[action]),name_comment_buf)
+#define CON(n) (c->items[n]->type == AptConstItemType::TYPE_STRING ? (sprintf(name_comment_buf, "str=\"%s\"", encodeForXml(c->items[n]->strvalue).c_str()), name_comment_buf) : (sprintf(name_comment_buf, "num=\"%d\"", c->items[n]->numvalue), name_comment_buf))
 void ProcessActions(FILE* xml, unsigned char* actions, unsigned char* aptaptdata, char* indent)
 {
 	unsigned char* a = actions;
@@ -82,6 +273,7 @@ void ProcessActions(FILE* xml, unsigned char* actions, unsigned char* aptaptdata
 		case ACTION_GOTOEXPRESSION:
 		{
 			ALIGN(a);
+			fprintf(xml, "%s%s\n", indent, ACT);
 			fprintf(xml, "%s<goto action=\"%d\" pos=\"%d\" />\n", indent, action, *(unsigned int*)a);
 			a += 4;
 		}
@@ -95,7 +287,7 @@ void ProcessActions(FILE* xml, unsigned char* actions, unsigned char* aptaptdata
 			add(*(unsigned int*)a);
 			char* str2 = (char*)(*(unsigned int*)a);
 			a += 4;
-			fprintf(xml, "%s<geturl str1=\"%s\" str2=\"%s\" />\n", indent, encodeForXml(str1).c_str(), encodeForXml(str2).c_str());
+			fprintf(xml, "%s<geturl action=\"%d\" str1=\"%s\" str2=\"%s\" />\n", indent, action, encodeForXml(str1).c_str(), encodeForXml(str2).c_str());
 		}
 		break;
 		case ACTION_CONSTANTPOOL:
@@ -106,10 +298,10 @@ void ProcessActions(FILE* xml, unsigned char* actions, unsigned char* aptaptdata
 			add(*(unsigned int*)a);
 			unsigned int* cpd = *(unsigned int**)a;
 			a += 4;
-			fprintf(xml, "%s<constantpool>\n", indent);
+			fprintf(xml, "%s<constantpool action=\"%d\">\n", indent, action);
 			for (unsigned int i = 0; i < count; i++)
 			{
-				fprintf(xml, "%s\t<constant val=\"%d\" />\n", indent, cpd[i]);
+				fprintf(xml, "%s\t<constant val=\"%d\" %s />\n", indent, cpd[i], CON(cpd[i]));
 			}
 			fprintf(xml, "%s</constantpool>\n", indent);
 		}
@@ -122,7 +314,7 @@ void ProcessActions(FILE* xml, unsigned char* actions, unsigned char* aptaptdata
 			add(*(unsigned int*)a);
 			unsigned int* pid = *(unsigned int**)a;
 			a += 4;
-			fprintf(xml, "%s<pushdata>\n", indent);
+			fprintf(xml, "%s<pushdata action=\"%d\">\n", indent, action);
 			for (unsigned int i = 0; i < count; i++)
 			{
 				fprintf(xml, "%s\t<data value=\"%d\" />\n", indent, pid[i]);
@@ -144,7 +336,7 @@ void ProcessActions(FILE* xml, unsigned char* actions, unsigned char* aptaptdata
 			FunctionArgument* args = (FunctionArgument*)(*(unsigned int*)a);
 			a += 4;
 			unsigned int size = *(unsigned int*)a;
-			fprintf(xml, "%s<definefunction2 name=\"%s\" flags=\"%d\" size=\"%d\">\n", indent, encodeForXml(name).c_str(), flags, size);
+			fprintf(xml, "%s<definefunction2 action=\"%d\" name=\"%s\" flags=\"%d\" size=\"%d\">\n", indent, action, encodeForXml(name).c_str(), flags, size);
 			for (unsigned int i = 0; i < count; i++)
 			{
 				add(args[i].name);
@@ -168,7 +360,7 @@ void ProcessActions(FILE* xml, unsigned char* actions, unsigned char* aptaptdata
 			char** args = (char**)(*(unsigned int*)a);
 			a += 4;
 			unsigned int size = *(unsigned int*)a;
-			fprintf(xml, "%s<definefunction name=\"%s\" size=\"%d\">\n", indent, encodeForXml(name).c_str(), size);
+			fprintf(xml, "%s<definefunction action=\"%d\" name=\"%s\" size=\"%d\">\n", indent, action, encodeForXml(name).c_str(), size);
 			for (unsigned int i = 0; i < count; i++)
 			{
 				add(args[i]);
@@ -192,6 +384,7 @@ void ProcessActions(FILE* xml, unsigned char* actions, unsigned char* aptaptdata
 			add(*(unsigned int*)a);
 			char* str = (char*)(*(unsigned int*)a);
 			a += 4;
+			fprintf(xml, "%s%s\n", indent, ACT);
 			fprintf(xml, "%s<string action=\"%d\" str=\"%s\" />\n", indent, action, encodeForXml(str).c_str());
 		}
 		break;
@@ -205,6 +398,7 @@ void ProcessActions(FILE* xml, unsigned char* actions, unsigned char* aptaptdata
 		case EA_PUSHBYTE:
 		case EA_PUSHREGISTER:
 		{
+			fprintf(xml, "%s%s\n", indent, ACT);
 			fprintf(xml, "%s<byte action=\"%d\" val=\"%d\" />\n", indent, action, *(unsigned char*)a);
 			a += 1;
 		}
@@ -230,6 +424,7 @@ void ProcessActions(FILE* xml, unsigned char* actions, unsigned char* aptaptdata
 		break;
 		default:
 		{
+			fprintf(xml, "%s%s\n", indent, ACT);
 			fprintf(xml, "%s<noarg action=\"%d\" />\n", indent, action);
 		}
 		break;
@@ -638,7 +833,7 @@ int main(int argc, char* argv[])
 			}
 			break;
 			default:
-				fprintf(xml, "\t\n");
+				fprintf(xml, "<sound code=\"%d\" />\t\n", m->characters[ch]->type);
 				break;
 			}
 		}
