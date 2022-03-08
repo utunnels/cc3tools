@@ -73,7 +73,7 @@ void ProcessActions(TiXmlNode* entry,ActionBytes *ab)
 			{
 				pd->pushdatacount++;
 				unsigned int value;
-				entryt2->ToElement()->Attribute("value",&value);
+				entryt2->ToElement()->Attribute("val",&value);
 				pd->pushdata.push_back(value);
 			}
 			AddPushDataAction(ACTION_PUSHDATA,ab,pd);
