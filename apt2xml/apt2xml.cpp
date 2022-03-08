@@ -317,7 +317,7 @@ void ProcessActions(FILE* xml, unsigned char* actions, unsigned char* aptaptdata
 			fprintf(xml, "%s<pushdata action=\"%d\">\n", indent, action);
 			for (unsigned int i = 0; i < count; i++)
 			{
-				fprintf(xml, "%s\t<data value=\"%d\" />\n", indent, pid[i]);
+				fprintf(xml, "%s\t<data val=\"%d\" %s />\n", indent, pid[i],CON(pid[i]));
 			}
 			fprintf(xml, "%s</pushdata>\n", indent);
 		}
