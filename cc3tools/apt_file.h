@@ -45,10 +45,10 @@ struct Transform {
 };
 
 struct Rect {
-	float top;
 	float left;
-	float bottom;
+	float top;
 	float right;
+	float bottom;
 };
 
 enum CharacterType {
