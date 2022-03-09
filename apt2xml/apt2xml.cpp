@@ -832,8 +832,10 @@ int main(int argc, char* argv[])
 				fprintf(xml, "\t</text>\n");
 			}
 			break;
+			case MOVIE:
+				break;
 			default:
-				fprintf(xml, "<sound code=\"%d\" />\t\n", m->characters[ch]->type);
+				fprintf(xml, "\t<sound code=\"%d\" comment=\"not implemented yet!\" />\t\n", m->characters[ch]->type);
 				break;
 			}
 		}
