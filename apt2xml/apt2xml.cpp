@@ -835,7 +835,7 @@ int main(int argc, char* argv[])
 			case MOVIE:
 				break;
 			default:
-				fprintf(xml, "\t<sound code=\"%d\" comment=\"not implemented yet!\" />\t\n", m->characters[ch]->type);
+				fprintf(xml, "\t<sound code=\"%d\" comment=\"not implemented yet!\" />\n", m->characters[ch]->type);
 				break;
 			}
 		}
