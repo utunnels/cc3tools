@@ -47,7 +47,7 @@ std::string encodeForXml(const std::string& sSrc)
 		case '\'': sRet << "&apos;"; break;
 
 		default:
-			if (c < 32 || c>127)
+			if (c < 32)
 			{
 				sRet << "&#" << (unsigned int)c << ";";
 			}
